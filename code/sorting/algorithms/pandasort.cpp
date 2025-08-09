@@ -4,7 +4,7 @@
 #include <cmath>
 #include <climits>
 
-std::vector<int> sortArray(std::vector<int>& arr) {
+std::vector<int> sortArray(std::vector<int> arr) {
     int n = arr.size();
     if (n <= 1) return arr;
     
