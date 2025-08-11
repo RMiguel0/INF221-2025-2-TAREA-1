@@ -12,20 +12,22 @@ std::vector<int> sortArray(std::vector<int> arr) {
     int block_count = (n + block_size - 1) / block_size;
     std::vector<std::queue<int>> block_queue(block_count);
     
-    // Ordenar cada bloque usando insertion sort
+    // Ordenar cada bloque usando selection sort
     for (int i = 0; i < block_count; i++) {
         int l = i * block_size;
         int r = std::min((i + 1) * block_size - 1, n - 1);
         
-        // Insertion sort en el bloque [l, r]
-        for (int j = l + 1; j <= r; j++) {
-            int key = arr[j];
-            int k = j - 1;
-            while (k >= l && arr[k] > key) {
-                arr[k + 1] = arr[k];
-                k--;
+        // Selection sort en el bloque [l, r]
+        for (int j = l; j <= r; j++) {
+            int min_idx = j;
+            for (int k = j + 1; k <= r; k++) {
+                if (arr[k] < arr[min_idx]) {
+                    min_idx = k;
+                }
             }
-            arr[k + 1] = key;
+            if (min_idx != j) {
+                std::swap(arr[j], arr[min_idx]);
+            }
         }
         
         // Llenar la cola con elementos ordenados del bloque
