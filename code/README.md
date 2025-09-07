@@ -1,5 +1,13 @@
 # Documentación
 
+# INF-221 – Tarea 1 (2025-2)
+
+**Alumno:** Miguel Rivero Medrano  
+**Curso:** Algoritmos y Complejidad  
+**Tarea 1 – Análisis experimental de algoritmos de ordenamiento y multiplicación de matrices**
+
+---
+
 ## Multiplicación de matrices
 
 ### Programa principal
@@ -49,69 +57,62 @@ provienen directamente de los resultados experimentales.
 
 ## Ordenamiento de arreglo unidimensional
 
-### Programa principal
-
 El programa principal de ordenamiento está en:
 
 code/sorting/sorting.cpp
 
+### Programa principal
 
 **Función general**  
-- Recorre `data/array_input/`, lee cada archivo de enterada (un arreglo de enteros por línea/espacio) y ejecuta los algoritmos configurados.
+- Recorre la carpeta `data/array_input/`, lee cada archivo de entrada (un arreglo de enteros) y ejecuta los algoritmos configurados.  
 - Para cada algoritmo:
-  1) clona el arreglo original,  
-  2) mide el **tiempo** con `std::chrono::high_resolution_clock`,  
-  3) estima/obtiene el **uso de memoria adicional** (ver notas abajo),  
-  4) guarda el arreglo ordenado en `data/array_output/` con el sufijo `_<Algoritmo>.txt`,  
-  5) registra `tiempo` y `memoria` en `data/measurements/<caso>_sorting_measurements.txt`.
+  1. Clona el arreglo original.  
+  2. Mide el **tiempo** de ejecución con `std::chrono::high_resolution_clock`.  
+  3. Estima/obtiene el **uso de memoria adicional** según la naturaleza del algoritmo.  
+  4. Guarda el arreglo ordenado en `data/array_output/` con el sufijo `_<Algoritmo>.txt`.  
+  5. Registra tiempo y memoria en `data/measurements/<caso>_sorting_measurements.txt`.
 
-**Algoritmos soportados (según tu código):**
-- `InsertionSort` (habilitado)
-- `MergeSort` (comentado)
-- `Quicksort` (comentado)
-- `PandaSort` (comentado)
-- `SortStd` (comentado)
+**Algoritmos soportados (según implementación):**
+- `InsertionSort` (habilitado en el código base).  
+- `MergeSort`, `QuickSort`, `PandaSort`, `SortStd` (descomentando se activan en `sorting.cpp`).  
 
-**Convención de medición de memoria (tal como implementaste):**
-- `InsertionSort`, `Quicksort`, `SortStd`: **in-place** → memoria adicional registrada como `0` KB (constante y despreciable).
-- `MergeSort`: suma explícita de `O(N)` (aprox. `N * sizeof(int)`), además de un delta de RSS observado (`memoria_fin - memoria_inicio`) cuando procede.
-- `PandaSort`: suma explícita de `O(sqrt(N))` (colas auxiliares) + delta de RSS cuando procede.
+**Convención de medición de memoria:**
+- `InsertionSort`, `QuickSort`, `SortStd`: considerados *in-place*, se registra 0 KB de memoria adicional.  
+- `MergeSort`: se suma un ajuste teórico de $O(n)$ (aprox. `N * sizeof(int)`), además del delta de RSS observado.  
+- `PandaSort`: se suma un ajuste teórico de $O(\sqrt{n})` (colas auxiliares), además del delta de RSS observado.  
 
+> **Nota:** en los gráficos de memoria, los valores para `MergeSort` y `PandaSort` representan una mezcla de medición empírica (RSS) más un ajuste teórico, con el fin de reflejar de manera más fiel su complejidad espacial.
 
-**Salidas:**
-- `data/array_output/<caso>_<Algoritmo>.txt`: arreglo ordenado.
-- `data/measurements/<caso>_sorting_measurements.txt`: líneas con:
-  - `Archivo: <caso> | Tamano arreglo: <N>`
-  - `[ok] <Algoritmo>: <tiempo_ms> ms <memoria_kb> KB`
+**Salidas:**  
+- `data/array_output/<caso>_<Algoritmo>.txt`: arreglo ordenado.  
+- `data/measurements/<caso>_sorting_measurements.txt`: mediciones de tiempo y memoria.
 
+---
 
 ### Scripts
 
-
 El script de ploteo para ordenamiento está en:
-
-code/sorting/scripts/plot_generator.py
 
 
 **Qué hace**  
-- Lee todos los archivos `.txt` en `code/sorting/data/measurements/`.
-- Extrae con expresiones regulares: `Tamano (N)`, `Algoritmo`, `Tiempo_ms`, `Memoria_KB`.
-- Construye un `DataFrame` (`pandas`) y genera dos figuras (`matplotlib`):
-  - `tiempo.png`: tiempo vs tamaño.
-  - `memoria.png`: memoria vs tamaño.
+- Recorre `data/measurements/` y procesa los archivos `.txt`.  
+- Extrae con expresiones regulares: `Tamano (N)`, `Algoritmo`, `Tiempo_ms`, `Memoria_KB`.  
+- Construye un `DataFrame` con `pandas`.  
+- Genera dos figuras con `matplotlib`:  
+  - `tiempo.png`: tiempo vs tamaño (ejes en log).  
+  - `memoria.png`: memoria vs tamaño (eje X en log).  
 
-**Entrada**  
-- Archivos de mediciones con el formato:
-  - `Archivo: <caso> | Tamano arreglo: <N>`
-  - `[ok] <Algoritmo>: <tiempo_ms> ms <memoria_kb> KB`
+**Entrada:**  
+- Archivos de mediciones en `data/measurements/`, con formato:  
+  - `Archivo: <caso> | Tamano arreglo: <N>`  
+  - `[ok] <Algoritmo>: <tiempo_ms> ms <memoria_kb> KB`  
 
-**Salida**  
-- Figuras PNG en `code/sorting/data/plots/`:
-  - `tiempo.png` (ejes X/Y en **log** en tu script)
-  - `memoria.png` (eje X en **log** en tu script)
+**Salida:**  
+- PNG en `data/plots/`:  
+  - `tiempo.png`  
+  - `memoria.png`  
 
-**Ejecución**  
-- Edita, si es necesario, las rutas internas del script (`ruta_mediciones`, `ruta_plots`) para que apunten a tu repo local.  
-- Ejecuta desde cualquier terminal con Python:
-  ```bash
-  python code/sorting/scripts/plot_generator.py
+**Ejecutar:**  
+```bash
+python code/sorting/scripts/plot_generator.py
+
