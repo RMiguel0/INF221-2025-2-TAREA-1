@@ -7,3 +7,6 @@ code/sorting/data/array_input/*.txt
 code/matrix_multiplication/data/matrix_input/*.txt
 !code/matrix_multiplication/data/matrix_input/16_densa_D0_a_1.txt
 !code/matrix_multiplication/data/matrix_input/16_densa_D0_a_2.txt
+
+code/matrix_multiplication/data/matrix_output/*.txt
+code/matrix_multiplication/data/array_output/*.txt
