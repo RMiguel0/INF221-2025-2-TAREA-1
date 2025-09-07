@@ -20,3 +20,4 @@ void insertionSort(vector<int>& arr)
         arr[j + 1] = key;
     }
 };
+
