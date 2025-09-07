@@ -1,4 +1,4 @@
-# TAREA 2 INF221 2025-1
+# TAREA 1 INF221 2025-2
 
 > Verificar siempre que se encuentra en la rama [master](https://github.com/pabloealvarez/INF221-2025-1-TAREA-1/tree/master)
 
