@@ -1,5 +1,41 @@
+Los casos de prueba considerados en esta tarea fueron generados a partir de los programas
+oficiales entregados, y se dividen en dos familias: \textit{ordenamiento de arreglos unidimensionales} 
+y \textit{multiplicación de matrices cuadradas}. Cada instancia se codifica mediante un nombre de archivo 
+de la forma \texttt{\{n\}\_\{t\}\_\{d\}\_\{m\}.txt}, donde cada parámetro controla una característica 
+del dataset y, en consecuencia, influye en el comportamiento y las mediciones de los algoritmos evaluados.
 
-Siempre 
-es importante generar varias muestras con características similares para una misma entrada, por ejemplo, variando tamaño del input dentro de lo que les permita la infraestructura utilizada en ests informe, con el fin de capturar una mayor diversidad de casos y obtener un análisis más completo del rendimiento de los algoritmos.
-  
-Dado que esta tarea los casos de pueba son descritos en el enunciado, y entregados los programas en PYTHON que los generan, \textbf{no deben} considerar otros casos de prueba, ni otros tamaños de entrada. \textbf{En esta sección sólo debe comentar los casos de prueba} entregados en el enunciado de manera crítica.
+\paragraph{Ordenamiento de arreglos.} 
+Los arreglos se definen por cuatro parámetros:
+\begin{itemize}
+    \item $n$: número de elementos, con valores en $\{10^1,10^3,10^5,10^7\}$. El tamaño del arreglo incide directamente 
+    en la complejidad temporal: algoritmos cuadráticos como \texttt{InsertionSort} se vuelven impracticables 
+    en $10^7$ elementos, mientras que algoritmos de orden $O(n\log n)$ (como \texttt{MergeSort} o \texttt{Quicksort}) 
+    mantienen tiempos manejables.
+    \item $t$: tipo de orden inicial (\textit{ascendente, descendente, aleatorio}). Este parámetro afecta de manera 
+    crítica a algoritmos dependientes del orden inicial, como \texttt{InsertionSort} (muy eficiente en arreglos 
+    casi ordenados, pero costoso en descendentes).
+    \item $d$: dominio de los valores ($D1=\{0,\dots,9\}$ o $D7=\{0,\dots,10^7\}$). Dominios pequeños generan 
+    muchos valores repetidos, lo cual impacta la estabilidad y las comparaciones internas del algoritmo.
+    \item $m$: muestra aleatoria (\textit{a,b,c}), que permite obtener variabilidad en los casos aún con los mismos 
+    parámetros, asegurando que los resultados no dependan de una única instancia no representativa.
+\end{itemize}
+
+\paragraph{Multiplicación de matrices.} 
+En este caso, cada par de archivos define dos matrices cuadradas $M_1, M_2$ cuyos parámetros son:
+\begin{itemize}
+    \item $n$: dimensión de la matriz, con valores en $\{2^4,2^6,2^8,2^{10}\}$. El tamaño domina tanto el tiempo 
+    como la memoria: mientras \texttt{Naive} ejecuta $O(n^3)$ operaciones, \texttt{Strassen} reduce a 
+    $O(n^{\log_2 7}) \approx O(n^{2.81})$, pero con sobrecosto en memoria.
+    \item $t$: tipo de matriz (\textit{dispersa, diagonal, densa}). Matrices dispersas o diagonales reducen 
+    el número de operaciones efectivas, lo que se traduce en tiempos más bajos que en el caso denso, donde 
+    prácticamente todos los elementos participan en los cálculos.
+    \item $d$: dominio de valores ($D0=\{0,1\}$ o $D10=\{0,\dots,9\}$). Un dominio más amplio genera más diversidad 
+    numérica y menor probabilidad de estructuras degeneradas (ej. filas nulas), lo que puede impactar tanto 
+    en la dificultad del cálculo como en la validez de comparaciones entre algoritmos.
+    \item $m$: muestra aleatoria (\textit{a,b,c}), que permite disponer de tres variantes de cada configuración, 
+    evitando sesgos por un caso aislado y favoreciendo un análisis estadístico más robusto.
+\end{itemize}
+
+En conjunto, estos parámetros aseguran una batería de pruebas diversa que cubre desde instancias pequeñas y 
+estructuradas hasta entradas de gran escala y aleatorias, lo cual permite evaluar no sólo la complejidad teórica 
+de los algoritmos, sino también su rendimiento práctico bajo diferentes condiciones.

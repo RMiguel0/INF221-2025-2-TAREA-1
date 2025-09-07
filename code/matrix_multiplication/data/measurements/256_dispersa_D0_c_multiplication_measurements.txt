@@ -1,0 +1,4 @@
+Archivo: 256_dispersa_D0_c | Tamano matriz: 256x256
+[ok] Naive: 146.693 ms 256 KB
+Archivo: 256_dispersa_D0_c | Tamano matriz: 256x256
+[ok] Strassen: 14440.7 ms 341 KB

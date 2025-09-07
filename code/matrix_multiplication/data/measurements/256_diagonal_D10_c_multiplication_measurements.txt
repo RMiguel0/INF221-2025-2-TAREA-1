@@ -1,0 +1,4 @@
+Archivo: 256_diagonal_D10_c | Tamano matriz: 256x256
+[ok] Naive: 151.2 ms 256 KB
+Archivo: 256_diagonal_D10_c | Tamano matriz: 256x256
+[ok] Strassen: 14366.4 ms 341 KB

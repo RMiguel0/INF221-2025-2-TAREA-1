@@ -1,0 +1,4 @@
+Archivo: 16_diagonal_D0_a | Tamano matriz: 16x16
+[ok] Naive: 0.042636 ms 1 KB
+Archivo: 16_diagonal_D0_a | Tamano matriz: 16x16
+[ok] Strassen: 6.14645 ms 1 KB

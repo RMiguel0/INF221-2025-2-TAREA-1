@@ -1,0 +1,10 @@
+Archivo: 10_aleatorio_D7_c.txt | Tamano arreglo: 10
+SortStd: 0.002074 ms 0 KB
+Archivo: 10_aleatorio_D7_c.txt | Tamano arreglo: 10
+MergeSort: 0.002884 ms 0 KB
+Archivo: 10_aleatorio_D7_c.txt | Tamano arreglo: 10
+[ok] Quicksort: 0.004314 ms 0 KB
+Archivo: 10_aleatorio_D7_c.txt | Tamano arreglo: 10
+[ok] PandaSort: 0.010126 ms 0 KB
+Archivo: 10_aleatorio_D7_c.txt | Tamano arreglo: 10
+[ok] InsertionSort: 0.001145 ms 0 KB

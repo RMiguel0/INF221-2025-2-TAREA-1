@@ -1,0 +1,4 @@
+Archivo: 64_dispersa_D10_c | Tamano matriz: 64x64
+[ok] Naive: 2.39184 ms 16 KB
+Archivo: 64_dispersa_D10_c | Tamano matriz: 64x64
+[ok] Strassen: 300.127 ms 21 KB

@@ -1,0 +1,4 @@
+Archivo: 256_densa_D0_a | Tamano matriz: 256x256
+[ok] Naive: 149.494 ms 256 KB
+Archivo: 256_densa_D0_a | Tamano matriz: 256x256
+[ok] Strassen: 14255.1 ms 341 KB

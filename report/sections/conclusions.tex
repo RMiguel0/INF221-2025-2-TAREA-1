@@ -1,13 +1,16 @@
-\begin{mdframed}
-    \textbf{La extensión máxima para esta sección es de 1 página.}
-\end{mdframed}
+El análisis experimental permitió contrastar las complejidades teóricas de los algoritmos con su desempeño práctico. 
+En el caso del ordenamiento, los resultados confirmaron la superioridad de los algoritmos $O(n\log n)$ frente a los cuadráticos: 
+\texttt{InsertionSort} se volvió impracticable en instancias grandes, mientras que \texttt{MergeSort}, \texttt{QuickSort} y especialmente \texttt{std::sort} 
+mostraron tiempos eficientes y un uso de memoria acorde a sus diseños. 
+El algoritmo \texttt{PandaSort}, en cambio, evidenció un comportamiento inferior, lo que subraya la dificultad de competir con métodos clásicos ya optimizados.
 
-La conclusión de su informe debe enfocarse en el resultado más importante de su trabajo. No se trata de repetir los puntos ya mencionados en el cuerpo del informe, sino de interpretar sus hallazgos desde un nivel más abstracto. En lugar de describir nuevamente lo que hizo, muestre cómo sus resultados responden a la necesidad planteada en la introducción.
+En cuanto a la multiplicación de matrices, el algoritmo \texttt{Naive} resultó más eficiente en los tamaños considerados, 
+a pesar de su complejidad asintótica $O(n^3)$. 
+Esto se debe a que \texttt{Strassen}, aunque teóricamente más rápido ($O(n^{2.81})$), introduce un costo adicional significativo en operaciones intermedias 
+y uso de memoria, lo que impide que su ventaja teórica se materialice en escalas moderadas. 
+Además, la necesidad de múltiples matrices temporales genera un sobrecosto en espacio que se refleja empíricamente en los gráficos.
 
-\begin{itemize}
-    \item  No vuelva a describir lo que ya explicó en el desarrollo del informe. En cambio, interprete sus resultados a un nivel superior, mostrando su relevancia y significado.
-    \item Aunque no debe repetir la introducción, la conclusión debe mostrar hasta qué punto logró abordar el problema o necesidad planteada en el inicio. Reflexione sobre el éxito de su análisis o experimento en relación con los objetivos propuestos.
-    \item No es necesario restablecer todo lo que hizo (ya lo ha explicado en las secciones anteriores). En su lugar, centre la conclusión en lo que significan sus resultados y cómo contribuyen al entendimiento del problema o tema abordado.
-    \item No deben centrarse en sí mismos o en lo que hicieron durante el trabajo (por ejemplo, evitando frases como "primero hicimos esto, luego esto otro...").
-    \item Lo más importante es que no se incluyan conclusiones que no se deriven directamente de los resultados obtenidos. Cada afirmación en la conclusión debe estar respaldada por el análisis o los datos presentados. Se debe evitar extraer conclusiones generales o excesivamente amplias que no puedan justificarse con los experimentos realizados.
-\end{itemize}
+En síntesis, los experimentos evidencian que la complejidad asintótica no basta para predecir el rendimiento real de un algoritmo: 
+las constantes ocultas, el manejo de memoria y los detalles de implementación son determinantes en la práctica. 
+Los resultados cumplen con el objetivo de la tarea al conectar teoría y práctica, mostrando cómo los límites del análisis asintótico se revelan 
+en escenarios experimentales concretos.

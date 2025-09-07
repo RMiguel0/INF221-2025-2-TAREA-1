@@ -1,0 +1,4 @@
+Archivo: 16_dispersa_D10_a | Tamano matriz: 16x16
+[ok] Naive: 0.044078 ms 1 KB
+Archivo: 16_dispersa_D10_a | Tamano matriz: 16x16
+[ok] Strassen: 6.49438 ms 1 KB

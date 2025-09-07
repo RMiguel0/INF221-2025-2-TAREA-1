@@ -1,0 +1,6 @@
+Archivo: 10000000_ascendente_D7_a.txt | Tamano arreglo: 10000000
+SortStd: 1565.59 ms 0 KB
+Archivo: 10000000_ascendente_D7_a.txt | Tamano arreglo: 10000000
+MergeSort: 3138.1 ms 0 KB
+Archivo: 10000000_ascendente_D7_a.txt | Tamano arreglo: 10000000
+PandaSort: 315436 ms 0 KB

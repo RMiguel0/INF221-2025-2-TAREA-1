@@ -1,0 +1,10 @@
+Archivo: 10_descendente_D7_a.txt | Tamano arreglo: 10
+SortStd: 0.00268 ms 0 KB
+Archivo: 10_descendente_D7_a.txt | Tamano arreglo: 10
+MergeSort: 0.002718 ms 0 KB
+Archivo: 10_descendente_D7_a.txt | Tamano arreglo: 10
+[ok] Quicksort: 0.004507 ms 0 KB
+Archivo: 10_descendente_D7_a.txt | Tamano arreglo: 10
+[ok] PandaSort: 0.005415 ms 0 KB
+Archivo: 10_descendente_D7_a.txt | Tamano arreglo: 10
+[ok] InsertionSort: 0.001423 ms 0 KB

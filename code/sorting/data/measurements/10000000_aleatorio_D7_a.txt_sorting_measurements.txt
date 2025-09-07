@@ -1,0 +1,6 @@
+Archivo: 10000000_aleatorio_D7_a.txt | Tamano arreglo: 10000000
+SortStd: 2757.07 ms 0 KB
+Archivo: 10000000_aleatorio_D7_a.txt | Tamano arreglo: 10000000
+MergeSort: 4609.42 ms 0 KB
+Archivo: 10000000_aleatorio_D7_a.txt | Tamano arreglo: 10000000
+PandaSort: 782346 ms 0 KB

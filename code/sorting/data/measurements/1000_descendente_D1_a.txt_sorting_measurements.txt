@@ -1,0 +1,10 @@
+Archivo: 1000_descendente_D1_a.txt | Tamano arreglo: 1000
+SortStd: 0.108031 ms 0 KB
+Archivo: 1000_descendente_D1_a.txt | Tamano arreglo: 1000
+MergeSort: 0.197939 ms 0 KB
+Archivo: 1000_descendente_D1_a.txt | Tamano arreglo: 1000
+[ok] Quicksort: 0.485174 ms 0 KB
+Archivo: 1000_descendente_D1_a.txt | Tamano arreglo: 1000
+[ok] PandaSort: 0.404196 ms 0 KB
+Archivo: 1000_descendente_D1_a.txt | Tamano arreglo: 1000
+[ok] InsertionSort: 2.17182 ms 0 KB

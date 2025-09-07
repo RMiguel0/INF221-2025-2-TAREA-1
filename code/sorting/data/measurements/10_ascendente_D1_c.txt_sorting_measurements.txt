@@ -1,0 +1,10 @@
+Archivo: 10_ascendente_D1_c.txt | Tamano arreglo: 10
+SortStd: 0.002397 ms 0 KB
+Archivo: 10_ascendente_D1_c.txt | Tamano arreglo: 10
+MergeSort: 0.002894 ms 0 KB
+Archivo: 10_ascendente_D1_c.txt | Tamano arreglo: 10
+[ok] Quicksort: 0.004498 ms 0 KB
+Archivo: 10_ascendente_D1_c.txt | Tamano arreglo: 10
+[ok] PandaSort: 0.006536 ms 0 KB
+Archivo: 10_ascendente_D1_c.txt | Tamano arreglo: 10
+[ok] InsertionSort: 0.001757 ms 0 KB

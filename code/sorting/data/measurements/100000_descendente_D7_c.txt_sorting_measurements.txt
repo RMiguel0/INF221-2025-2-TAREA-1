@@ -1,0 +1,14 @@
+Archivo: 100000_descendente_D7_c.txt | Tamano arreglo: 100000
+SortStd: 8.55179 ms 0 KB
+Archivo: 100000_descendente_D7_c.txt | Tamano arreglo: 100000
+MergeSort: 24.5172 ms 0 KB
+Archivo: 100000_descendente_D7_c.txt | Tamano arreglo: 100000
+[ok] Quicksort: 33.5739 ms 0 KB
+Archivo: 100000_descendente_D7_c.txt | Tamano arreglo: 100000
+[ok] PandaSort: 368.054 ms 1 KB
+Archivo: 100000_descendente_D7_c.txt | Tamano arreglo: 100000
+[ok] PandaSort: 307.507 ms 1 KB
+Archivo: 100000_descendente_D7_c.txt | Tamano arreglo: 100000
+[ok] PandaSort: 313.103 ms 1 KB
+Archivo: 100000_descendente_D7_c.txt | Tamano arreglo: 100000
+[ok] InsertionSort: 27705.9 ms 0 KB

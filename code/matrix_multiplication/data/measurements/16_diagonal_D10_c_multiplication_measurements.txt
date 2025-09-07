@@ -1,0 +1,4 @@
+Archivo: 16_diagonal_D10_c | Tamano matriz: 16x16
+[ok] Naive: 0.043471 ms 1 KB
+Archivo: 16_diagonal_D10_c | Tamano matriz: 16x16
+[ok] Strassen: 6.10998 ms 1 KB

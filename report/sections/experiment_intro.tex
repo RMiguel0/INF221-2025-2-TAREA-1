@@ -1,8 +1,146 @@
-\begin{mdframed}
-    \textbf{La extensión máxima para esta sección es de 7 páginas, donde una página es para introducir los experimentos (breve descripción y comentarios sobre los datasets) y 6 páginas para los resultados.}
-\end{mdframed}
-
-
 \epigraph{``\textit{Non-reproducible single occurrences are of no significance to
-science.}''}{---\citeauthor{popper2005logic},\citeyear{popper2005logic} \cite{popper2005logic}}
-En la sección de Experimentos, es fundamental detallar la infraestructura utilizada para asegurar la reproducibilidad de los resultados, un principio clave en cualquier experimento científico. Esto implica especificar tanto el hardware (por ejemplo, procesador Intel Core i7-9700K, 3.6 GHz, 16 GB RAM DDR4, almacenamiento SSD NVMe) como el entorno software (sistema operativo Ubuntu 20.04 LTS, compilador g++ 9.3.0, y cualquier librería relevante). Además, se debe incluir una descripción clara de las condiciones de entrada, los parámetros utilizados y los resultados obtenidos, tales como tiempos de ejecución y consumo de memoria, que permitan a otros replicar los experimentos en entornos similares. \textit{La replicabilidad es un aspecto crítico para validar los resultados en la investigación científica computacional} \cite{inbookFonseca}.
+science.}''}{---\citeauthor{popper2005logic}, \citeyear{popper2005logic} \cite{popper2005logic}}
+
+Para esta experiencia se utilizó el siguiente hardware: un CPU Ryzen 5 5600X a 3.60 GHz, 
+16 GB de memoria RAM DDR4, y un disco sólido SSD M.2 PCIe NVMe. 
+El ambiente de desarrollo consistió en \textit{Visual Studio Code} sobre Windows 11, 
+mientras que la ejecución se llevó a cabo en un entorno virtual Ubuntu 
+WSL 24.04.3 LTS, compilando con \texttt{g++} versión 13.3.0. 
+
+En cuanto a las herramientas utilizadas, se emplearon diferentes librerías de C++ tanto estándar 
+como específicas del entorno UNIX/Linux, entre las cuales destacan:
+
+\begin{itemize}
+    \item \texttt{<functional>}: Permite definir funciones anónimas (``lambda'') y almacenarlas en estructuras. 
+    En el código se utiliza para declarar el vector de algoritmos y ejecutarlos de manera genérica, 
+    independientemente de su firma particular.
+    
+    \item \texttt{<chrono>}: Proporciona mediciones precisas de tiempo mediante el uso de 
+    \texttt{high\_resolution\_clock}. En este trabajo se empleó para registrar el tiempo de ejecución 
+    (en milisegundos) de cada algoritmo.
+    
+    \item \texttt{<sys/resource.h>}: Ofrece acceso a recursos del sistema (CPU, memoria, entre otros). 
+    En nuestro caso, se utilizó en conjunto con el sistema de archivos \texttt{/proc} de Linux 
+    para medir el uso de memoria de los procesos en ejecución.
+    
+    \item \texttt{<unistd.h>}: Permite obtener información del sistema operativo, en particular 
+    el tamaño de página de memoria mediante \texttt{getpagesize()}, dato esencial para convertir 
+    las mediciones de memoria del archivo \texttt{/proc} a kilobytes.
+\end{itemize}
+
+\vspace{0.5em}
+
+De manera general, ambos programas desarrollados (\texttt{sorting.cpp} y 
+\texttt{matrix\_multiplication.cpp}) siguen una misma lógica. 
+En primer lugar, recorren las carpetas de entrada correspondientes, las cuales contienen los 
+archivos generados previamente mediante \textit{scripts} de Python. 
+Posteriormente, los datos son cargados en estructuras adecuadas: vectores en el caso del 
+ordenamiento y matrices en el caso de la multiplicación. 
+La función \texttt{record} es la encargada de recibir estos datos, ejecutar los algoritmos definidos 
+y registrar sus resultados experimentales.
+
+Dentro de \texttt{record} se declaran los algoritmos utilizando funciones ``lambda''. 
+Esto permite estandarizar la forma de invocar cada implementación, aun cuando difieren en su 
+interfaz original, garantizando así una ejecución uniforme y reduciendo posibles sesgos 
+en las mediciones. 
+
+En cuanto a las limitaciones observadas, fue necesario restringir algunos casos de prueba. 
+En el ordenamiento, los algoritmos \texttt{quickSort} e \texttt{insertionSort} 
+solo se ejecutaron hasta un tamaño máximo de $10^5$ elementos. 
+Esto se debió a que, para instancias mayores, \texttt{quickSort} producía 
+errores de \textsf{Segmentation fault (Core dumped)}, mientras que 
+\texttt{insertionSort} presentaba tiempos de ejecución excesivamente largos 
+que lo volvían impráctico. 
+
+En contraste, los algoritmos de multiplicación de matrices no presentaron este tipo de inconvenientes, 
+siendo estables incluso para tamaños de matriz mayores, aunque con tiempos de ejecución
+relativamente altos.
+
+\vspace{0.5em}
+
+\subsubsection{Metodología general}
+
+Los inputs fueron generados automáticamente mediante \textit{scripts} de Python provistos en el enunciado.
+Según cada problema se recorren los directorios;
+
+\begin{itemize}
+    \item \textbf{Sorting}: Archivos con listas de enteros.
+    \item \textbf{Multiplicación de matrices}: Archivos con matrices cuadradas.
+\end{itemize}
+
+Luego la función \texttt{record} recibe los datos y ejecuta todos los algoritmos definidos.
+Esta función constituye el núcleo de la experiencia, pues concentra la lógica de ejecución, 
+medición y almacenamiento de resultados. 
+
+En el caso de la multiplicación de matrices, una vez que se cargan las matrices con 
+\texttt{leer\_matriz}, se extrae el nombre del archivo y se normaliza para usarlo como 
+etiqueta del experimento. Por ejemplo, los inputs 
+\textit{1024\_dispersa\_D10\_c\_1.txt} y \textit{1024\_dispersa\_D10\_c\_2.txt} 
+producen como salida un archivo en \textsf{data/matrix\_output/} llamado 
+\textit{1024\_dispersa\_D10\_c\_Naive.txt} si el algoritmo ejecutado fue 
+\texttt{Naive}, que contiene la matriz resultante de la multiplicación. 
+De manera análoga, en \textsf{data/measurements/} se genera un archivo 
+\textit{1024\_dispersa\_D10\_c\_multiplication\_measurements.txt} donde se 
+almacenan los tiempos de ejecución en milisegundos y las estimaciones de uso de memoria 
+para cada algoritmo (Naive y Strassen). 
+
+Para garantizar equidad experimental, ambos algoritmos se encapsulan en funciones 
+``lambda'' con la misma firma, lo que permite generalizar su ejecución en un mismo bucle. 
+Adicionalmente, se registran tanto mediciones empíricas (RSS del proceso antes y después) 
+como estimaciones teóricas de memoria según la complejidad espacial de cada algoritmo. 
+Esto asegura consistencia entre ejecuciones y otorga un marco más riguroso para comparar 
+resultados.
+
+El comportamiento es análogo en el caso de ordenamiento de arreglos: la función 
+\texttt{record} recibe el archivo de entrada, lo carga en un vector, identifica el tamaño 
+del arreglo y ejecuta cada algoritmo definido (InsertionSort, MergeSort, QuickSort, 
+entre otros) sobre una copia idéntica de los datos. Los resultados ordenados se guardan 
+en \textsf{data/array\_output/}, mientras que los tiempos y consumos de memoria se 
+registran en \textsf{data/measurements/}. 
+
+Cabe destacar que en el caso de los algoritmos de ordenamiento, la función \texttt{record} 
+distingue entre aquellos que son in-place (InsertionSort, QuickSort, SortStd), cuyo consumo 
+adicional de memoria es despreciable, y aquellos que requieren memoria auxiliar 
+(MergeSort con $O(n)$ o PandaSort con $O(\sqrt{n})$), donde se hace un ajuste explícito 
+para reflejar la complejidad teórica. De esta forma, los resultados obtenidos no sólo 
+registran el comportamiento observado, sino que también incorporan la naturaleza propia 
+de cada algoritmo.
+
+Este ajuste explícito consiste en que, en el caso de MergeSort y PandaSort, la medición de memoria reportada combina 
+dos componentes: (i) la variación observada en el RSS del proceso antes y después de la ejecución, 
+y (ii) un ajuste teórico que refleja la complejidad espacial propia de cada algoritmo 
+($O(n)$ para MergeSort y $O(\sqrt{n})$ para PandaSort). 
+De esta forma, los gráficos no representan únicamente el uso real de memoria en tiempo de ejecución, 
+sino una estimación ajustada que busca reflejar de manera más fiel el comportamiento esperado según su análisis teórico.
+
+
+En el caso particular del algoritmo de Strassen, fue necesario realizar un ajuste explícito en 
+la estimación de memoria. A diferencia del método \texttt{Naive}, que requiere únicamente 
+tres matrices de tamaño $n \times n$ (dos de entrada y una de salida), Strassen divide las 
+matrices en cuatro bloques y realiza siete multiplicaciones de sub-bloques en lugar de las 
+ocho que se harían con el enfoque estándar. Sin embargo, este ahorro en operaciones aritméticas 
+se consigue a costa de crear matrices temporales adicionales en cada nivel recursivo, 
+tanto para las sumas y restas intermedias como para almacenar los productos parciales $M_1,\dots,M_7$.
+
+Si se analiza un nivel de la recursión, los arreglos temporales ocupan $O(n^2)$ espacio adicional. 
+Dado que en el siguiente nivel se trabaja con submatrices de tamaño $n/2 \times n/2$, el coste extra 
+en memoria se reduce a $O((n/2)^2) = O(n^2/4)$, y así sucesivamente en cada paso de la recursión. 
+Esto conduce a la serie geométrica
+
+\[
+n^2 \left(1 + \tfrac{1}{4} + \tfrac{1}{16} + \cdots \right),
+\]
+
+cuyo valor converge a $\tfrac{4}{3} n^2$. Es decir, Strassen mantiene el mismo orden 
+asintótico $O(n^2)$ en consumo de memoria que el algoritmo Naive, pero con una constante 
+mayor, aproximadamente un $33\%$ adicional. 
+
+En la implementación de este trabajo, este análisis se refleja aplicando un factor de corrección 
+de $\tfrac{4}{3}$ a la estimación de memoria base $B$, de modo que
+
+\[
+M_{\text{Strassen}} \approx \tfrac{4}{3} B,
+\]
+
+lo cual constituye un modelo más fiel al comportamiento real del algoritmo que asumir simplemente 
+el doble de memoria.

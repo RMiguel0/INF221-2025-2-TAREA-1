@@ -1,0 +1,4 @@
+Archivo: 1024_diagonal_D0_a | Tamano matriz: 1024x1024
+[ok] Naive: 9763.59 ms 4096 KB
+Archivo: 1024_diagonal_D0_a | Tamano matriz: 1024x1024
+[ok] Strassen: 732633 ms 5461 KB

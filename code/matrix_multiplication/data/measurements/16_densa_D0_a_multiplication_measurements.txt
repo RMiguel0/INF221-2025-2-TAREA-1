@@ -1,0 +1,4 @@
+Archivo: 16_densa_D0_a | Tamano matriz: 16x16
+[ok] Naive: 0.043302 ms 1 KB
+Archivo: 16_densa_D0_a | Tamano matriz: 16x16
+[ok] Strassen: 6.00712 ms 1 KB

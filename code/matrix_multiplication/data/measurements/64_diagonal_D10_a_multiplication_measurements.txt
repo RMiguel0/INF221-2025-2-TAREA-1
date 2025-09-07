@@ -1,0 +1,4 @@
+Archivo: 64_diagonal_D10_a | Tamano matriz: 64x64
+[ok] Naive: 2.3073 ms 16 KB
+Archivo: 64_diagonal_D10_a | Tamano matriz: 64x64
+[ok] Strassen: 294.118 ms 21 KB

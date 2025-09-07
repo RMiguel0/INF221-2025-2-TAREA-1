@@ -1,0 +1,4 @@
+Archivo: 64_densa_D10_b | Tamano matriz: 64x64
+[ok] Naive: 2.43188 ms 16 KB
+Archivo: 64_densa_D10_b | Tamano matriz: 64x64
+[ok] Strassen: 309.532 ms 21 KB

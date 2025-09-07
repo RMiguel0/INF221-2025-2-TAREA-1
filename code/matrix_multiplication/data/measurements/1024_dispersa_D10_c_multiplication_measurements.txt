@@ -1,0 +1,4 @@
+Archivo: 1024_dispersa_D10_c | Tamano matriz: 1024x1024
+[ok] Naive: 10576.9 ms 4096 KB
+Archivo: 1024_dispersa_D10_c | Tamano matriz: 1024x1024
+[ok] Strassen: 726962 ms 5461 KB

@@ -1,0 +1,10 @@
+Archivo: 100000_ascendente_D7_a.txt | Tamano arreglo: 100000
+SortStd: 11.0177 ms 0 KB
+Archivo: 100000_ascendente_D7_a.txt | Tamano arreglo: 100000
+MergeSort: 25.5586 ms 0 KB
+Archivo: 100000_ascendente_D7_a.txt | Tamano arreglo: 100000
+[ok] Quicksort: 36.4068 ms 0 KB
+Archivo: 100000_ascendente_D7_a.txt | Tamano arreglo: 100000
+[ok] PandaSort: 375.655 ms 1 KB
+Archivo: 100000_ascendente_D7_a.txt | Tamano arreglo: 100000
+[ok] InsertionSort: 0.76313 ms 0 KB
